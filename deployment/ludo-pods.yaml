@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ludo
+    servicefor: ludo
+  name: ludo
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: ludo
+    servicefor: ludo
+  type: NodePort
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: ludo
+    servicefor: ludo
+  name: ludo
+spec:
+    containers:
+      - image: opencloudnatives/ludo:init
+        imagePullPolicy: Always
+        name: ludo
+        ports:
+          - containerPort: 8080

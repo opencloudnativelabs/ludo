@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ludo
+    servicefor: ludo
+  name: ludo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ludo
+      servicefor: ludo
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: ludo
+        servicefor: ludo
+    spec:
+      containers:
+        - image: opencloudnatives/ludo:init
+          imagePullPolicy: Always
+          name: ludo

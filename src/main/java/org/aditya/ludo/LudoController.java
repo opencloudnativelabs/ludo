@@ -15,11 +15,14 @@ public class LudoController {
 
     @GetMapping("/dice")
     public int roll(){
-        Double random = Math.random() * 100;
+        Double random = Math.random() * 10;
         Integer intData = random.intValue();
 
         if(intData>6){
             intData = intData - 6;
+        }
+        if(intData == 0){
+            intData = 6;
         }
 
         return intData;
